@@ -1,21 +1,12 @@
-import { useState, useEffect } from 'react';
+import Hello from './Component/Hello';
+import Timer from './Component/Timer';
 
 const App = () => {
-  const [time, setTime] = useState(new Date().toLocaleTimeString('fa-IR'));
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime(new Date().toLocaleTimeString('fa-IR'));
-    }, 1000);
-
-    // پاک‌سازی interval وقتی کامپوننت unmount میشه
-    return () => clearInterval(intervalId);
-  }, []);
-
+  
   return (
-    <div className="bg-amber-500 font-bold text-3xl animate-bounce">
-      <h1>Hello My Friends</h1>
-      <h2>it is {time}</h2>
+    <div className="flex flex-col m-8 justify-center items-center bg-amber-300 font-bold text-3xl">
+      <Hello/>
+      <Timer/>
     </div>
   );
 };
