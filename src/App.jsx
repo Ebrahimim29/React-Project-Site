@@ -4,7 +4,7 @@ import Timer from './Component/Timer';
 const App = () => {
   
   return (
-    <div className="flex flex-col m-8 justify-center items-center bg-amber-300 font-bold text-3xl">
+    <div className="flex flex-col justify-center items-center bg-black/50 w-full h-screen font-bold text-3xl">
       <Hello/>
       <Timer/>
     </div>
