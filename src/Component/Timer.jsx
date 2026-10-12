@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Timer = ({ handleSetText }) => {
+const Timer = ({ handleSetText , handleSetIsLight, isLight}) => {
 
     const [time, setTime] = useState(new Date().toLocaleTimeString("fa-IR"));
 
@@ -18,6 +18,7 @@ const Timer = ({ handleSetText }) => {
             <br />
             <div className="mt-8 flex justify-center items-center text-amber-300">
                 <button className="border-2 rounded-3xl p-2 bg-amber-900 shadow-amber-600" onClick={handleSetText}>Change</button>
+                <button className="border-2 rounded-3xl p-2 ml-4 bg-emerald-500 shadow-amber-600" onClick={handleSetIsLight}>ChangeColor</button>
             </div>
         </div>
     )

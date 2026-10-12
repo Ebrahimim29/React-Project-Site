@@ -5,15 +5,20 @@ import Timer from './Component/Timer';
 const App = () => {
   
   const [text, setText] = useState("Hello My Friends");
+  const [isLight, setIsLight] = useState(false);
 
   const handleSetText = () => {
     setText("Welcome To Site");
   };
 
+  const handleSetIsLight = () => {
+    setIsLight(!isLight);
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center bg-black/50 w-full h-screen font-bold text-3xl">
+    <div style={{background:isLight ? "white" : "black"}} className="flex flex-col justify-center items-center w-full h-screen font-bold text-3xl">
       <Hello text={text}/>      
-      <Timer handleSetText={handleSetText}/>      
+      <Timer handleSetText={handleSetText} handleSetIsLight={handleSetIsLight} isLight={isLight}/>      
     </div>
   );
 };
