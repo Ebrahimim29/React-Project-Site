@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Hello from './Component/Hello';
 import Timer from './Component/Timer';
+import { TestContext } from './Context/testContext';
 
 const App = () => {
 
@@ -18,15 +19,17 @@ const App = () => {
   }
 
   return (
-    <div style={{ background: isLight ? "white" : "black" }} className="flex flex-col justify-center items-center w-full h-screen font-bold text-3xl">
-      <Hello text={text} />
-      <Timer 
-      timeArr={timeArr}
-      setTimeArr={setTimeArr}
-      handleSetText={handleSetText} 
-      handleSetIsLight={handleSetIsLight} 
-      isLight={isLight} />
-    </div>
+    <TestContext.Provider value='white'>
+      <div style={{ background: isLight ? "white" : "black" }} className="flex flex-col justify-center items-center w-full h-screen font-bold text-3xl">
+        <Hello text={text} />
+        <Timer
+          timeArr={timeArr}
+          setTimeArr={setTimeArr}
+          handleSetText={handleSetText}
+          handleSetIsLight={handleSetIsLight}
+          isLight={isLight} />
+      </div>
+    </TestContext.Provider>
 
   );
 };

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TimeList from "./TimeList";
+import { TestContext } from "../Context/testContext";
 
 const Timer = ({ 
     handleSetText, 
@@ -9,6 +10,8 @@ const Timer = ({
     setTimeArr
     }) => {
 
+    const context = useContext(TestContext)
+    
     const [time, setTime] = useState(new Date().toLocaleTimeString("fa-IR"));
 
     useEffect(() => {
@@ -29,7 +32,7 @@ const Timer = ({
     }
 
     return (
-        <div className="flex flex-col justify-center items-center w-full">
+        <div className="flex flex-col justify-center items-center w-full" style={{color:context}}>
             <p className="mt-16 w-50 h-50 rounded-full shadow-[0_0_50px_white] 
             flex justify-center items-center bg-gray-700 text-cyan-600 cursor-pointer hover:shadow-amber-600"
             onClick={handleSaveTime}>
