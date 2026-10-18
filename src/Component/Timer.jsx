@@ -57,10 +57,7 @@ const Timer = ({
                     onClick={handleClearTimes}>
                         ClearList
                     </button>
-                </div>
-                <TimeList>
-                    {timeArr}
-                </TimeList>
+                </div>               
 
             </div>
         </div>
