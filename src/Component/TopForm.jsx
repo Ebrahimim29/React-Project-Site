@@ -13,6 +13,7 @@ const TopForm = () => {
     const handleAddTask = (event) =>{
         event.preventDefault()
         setTaskItems([...taskItems, {id:Math.random(), title:task, done:false}])
+        setTask("")
     }
 
     return (
@@ -22,7 +23,9 @@ const TopForm = () => {
                     <input type="text" 
                     className="flex-1 w-full p-2 rounded" 
                     placeholder="Add a Task..."
-                    onChange={handleSetTask}/>
+                    onChange={handleSetTask}
+                    value={task}
+                    />
                     <button type="submit" 
                     className="px-4 py-2 bg-orange-600 rounded shrink-0">
                         Submit
