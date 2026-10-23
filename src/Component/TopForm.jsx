@@ -18,13 +18,15 @@ const TopForm = () => {
     return (
         <Fragment>
             <h4 className="text-white mb-2">Welcome To TODO</h4>
-            <form className="w-full px-4" onSubmit={handleAddTask}>
-                <div className="flex items-center justify-center gap-2 w-full">
-                    <input type="text" className="bg-emerald-400 p-2 rounded-lg flex-1 
-                    outline-none text-black" placeholder="Add a Task..."
+            <form className="flex items-center justify-between w-full gap-2 px-2" onSubmit={handleAddTask}>
+                    <input type="text" 
+                    className="flex-1 w-full p-2 rounded" 
+                    placeholder="Add a Task..."
                     onChange={handleSetTask}/>
-                    <button type="submit" className="bg-amber-700 py-2 px-4 rounded-lg whitespace-nowrap">Submit</button>
-                </div>
+                    <button type="submit" 
+                    className="px-4 py-2 bg-orange-600 rounded shrink-0">
+                        Submit
+                    </button>                
             </form>
         </Fragment>
     )
