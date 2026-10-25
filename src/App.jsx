@@ -5,12 +5,13 @@ import { TestContext } from './Context/testContext';
 import TimeList from './Component/TimeList';
 import TodoList from './Component/TodoList';
 import { taskContext as TaskContext } from './Context/taskContext'; 
+import PureComponent from './Component/PureComponent';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
   const [isLight, setIsLight] = useState(false);
   const [timeArr, setTimeArr] = useState([]);
-
+  
   const [taskItems, setTaskItems] = useState([
     { id: 1, title: "Work No.1", done:false },
     { id: 2, title: "Work No.2", done:true },
@@ -46,6 +47,8 @@ const App = () => {
         <TaskContext.Provider value={{ taskItems, setTaskItems }}>
           <TodoList text={text} />
         </TaskContext.Provider>
+
+        <PureComponent/>
         
       </div>
     </TestContext.Provider>
