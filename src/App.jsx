@@ -6,6 +6,7 @@ import TimeList from './Component/TimeList';
 import TodoList from './Component/TodoList';
 import { taskContext as TaskContext } from './Context/taskContext'; 
 import PureComponent from './Component/PureComponent';
+import WordEvent from './Component/WordEvent';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
@@ -49,6 +50,8 @@ const App = () => {
         </TaskContext.Provider>
 
         <PureComponent/>
+
+        <WordEvent/>
         
       </div>
     </TestContext.Provider>
