@@ -7,6 +7,8 @@ import TodoList from './Component/TodoList';
 import { taskContext as TaskContext } from './Context/taskContext'; 
 import PureComponent from './Component/PureComponent';
 import WordEvent from './Component/WordEvent';
+import Sidebar from './Component/Sidebar';
+import Content from './Component/Content';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
@@ -52,7 +54,10 @@ const App = () => {
         <PureComponent/>
 
         <WordEvent/>
-        
+
+        <Sidebar/>
+        <Content/>
+               
       </div>
     </TestContext.Provider>
   );

@@ -9,3 +9,14 @@ body{
     yellowgreen 100%);
 }
 
+.pointer{
+    cursor:  pointer !important;
+}
+
+.transition_200{
+    transition: all 200ms ease;
+}
+
+.text_hover_shadow:hover{
+    text-shadow: 0 0 3px black;
+}
