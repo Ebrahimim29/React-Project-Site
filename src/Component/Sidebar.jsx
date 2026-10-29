@@ -1,8 +1,15 @@
+import { useContext } from 'react';
+import style from '../style.module.css';
+import { MainContext } from '../Context/MainContext';
+
 const Sidebar = () => {
+
+    const {showMenu, setShowMenu} = useContext(MainContext)
+
     return (
-        <div className="bg-amber-700">
-            <ul className="m-0 p-0">
-                <li>
+        <div className={`${style.sidebar_section}bg-amber-700`} style={showMenu ? {right:0} : {}}>
+            <ul className={`${style.sidebar_list} m-0 p-0`}>
+                <li className={style.sidebar_avatar}>
                     <img src="/assets/images/1.jpg" alt="" />
                 </li>
                 <li>

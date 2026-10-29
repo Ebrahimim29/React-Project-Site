@@ -1,3 +1,12 @@
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: unset;
+}
+
 td , th {
     text-align: center !important;
 }
@@ -8,6 +17,12 @@ td , th {
     background-size: cover;
     color: white;
     width: 250px;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    display: block;
+    transition: all 300ms ease;
+    z-index: 999;
 }
 
 .sidebar_avatar{
@@ -21,4 +36,29 @@ td , th {
     border-radius: 50%;
 }
 
-/* Part 16 07:42 */
+.sidebar_list li {
+    padding: 0.3rem 1rem;
+    transition: all 300ms ease;
+}
+
+.sidebar_list li:not(.sidebar_avatar):hover{
+    padding: 0.3rem 1rem;
+    background: #eba668;
+}
+
+.content_section{
+    position: sticky;
+    width: calc(100% - 250px);
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+}
+
+.menu_button{
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 1000;
+}
+

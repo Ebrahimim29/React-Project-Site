@@ -4,21 +4,24 @@ import Timer from './Component/Timer';
 import { TestContext } from './Context/testContext';
 import TimeList from './Component/TimeList';
 import TodoList from './Component/TodoList';
-import { taskContext as TaskContext } from './Context/taskContext'; 
+import { taskContext as TaskContext } from './Context/taskContext';
 import PureComponent from './Component/PureComponent';
 import WordEvent from './Component/WordEvent';
 import Sidebar from './Component/Sidebar';
 import Content from './Component/Content';
+import { MainContext } from './Context/MainContext';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
   const [isLight, setIsLight] = useState(false);
   const [timeArr, setTimeArr] = useState([]);
-  
+
+  const [showMenu, setShowMenu] = useState(false);
+
   const [taskItems, setTaskItems] = useState([
-    { id: 1, title: "Work No.1", done:false },
-    { id: 2, title: "Work No.2", done:true },
-    { id: 3, title: "Work No.3", done:false }
+    { id: 1, title: "Work No.1", done: false },
+    { id: 2, title: "Work No.2", done: true },
+    { id: 3, title: "Work No.3", done: false }
   ])
 
   const handleSetText = () => {
@@ -46,18 +49,20 @@ const App = () => {
         />
 
         <TimeList />
-        
+
         <TaskContext.Provider value={{ taskItems, setTaskItems }}>
           <TodoList text={text} />
         </TaskContext.Provider>
 
-        <PureComponent/>
+        <PureComponent />
 
-        <WordEvent/>
+        <WordEvent />
 
-        <Sidebar/>
-        <Content/>
-               
+        <MainContext.Provider value={{showMenu, setShowMenu}}>
+          <Sidebar />
+          <Content />
+        </MainContext.Provider>
+
       </div>
     </TestContext.Provider>
   );

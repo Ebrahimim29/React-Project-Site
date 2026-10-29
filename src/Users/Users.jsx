@@ -1,20 +1,21 @@
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import style from "../style.module.css";
 
 const Users = () => {
     return (
-        <div className="mt-5 p-4">
+        <div className={`${style.item_content} mt-5 p-4`}>
 
             <h4 className="text-center">مدیریت کاربران</h4>
             <div className="my-2 mb-4 justify-between w-100 mx-0">
-                <div>
+                <div className="mb-4 w-10/12 md:w-6/12 lg:w-4/12">
                     <input type="text" placeholder="Search" />
                 </div>
                 <div className="text-start px-0">
                     <button className="text-green-600">
-                        <FaPlus/>
+                        <FaPlus className="text-yellow-700"/>
                     </button>
                 </div>
-                <table>
+                <table className="bg-lime-700 shadow">
                     <thead>
                         <tr>
                             <th>#</th>
