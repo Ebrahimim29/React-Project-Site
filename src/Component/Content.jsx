@@ -11,12 +11,15 @@ const Content = () => {
 
     const {showMenu, setShowMenu} = useContext(MainContext)
 
-    const handleShowMenu = () => {
+    const handleShowMenu = (event) => {
+        event.stopPropagation()
         setShowMenu(!showMenu)
+        console.log(showMenu);
+        
     }
 
     return (
-        <div className={style.content_section}>
+        <div className={style.content_section} onClick={()=>{setShowMenu(false)}}>
             <FaBars 
             onClick={handleShowMenu}
             className={`${style.menu_button} text-red-700 m-2 pointer`}/>
