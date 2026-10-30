@@ -6,6 +6,7 @@ import Users from "../Users/Users";
 import style from "../style.module.css";
 import { useContext } from "react";
 import { MainContext } from "../Context/MainContext";
+import { Route, Routes } from "react-router";
 
 const Content = () => {
 
@@ -23,10 +24,15 @@ const Content = () => {
             <FaBars 
             onClick={handleShowMenu}
             className={`${style.menu_button} text-red-700 m-2 pointer`}/>
-            <Users/>
-            <Posts/>
-            <Gallery/>
-            <Todos/>
+
+                <Routes>
+                    <Route path="/" element={<Users/>}></Route>
+                    <Route path="/post" element={<Posts/>}></Route>
+                    <Route path="/gallery" element={<Gallery/>}></Route>
+                    <Route path="/todo" element={<Todos/>}></Route>
+                </Routes>
+          
+
         </div>
     );
 };

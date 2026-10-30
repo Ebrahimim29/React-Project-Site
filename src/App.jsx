@@ -10,6 +10,7 @@ import WordEvent from './Component/WordEvent';
 import Sidebar from './Component/Sidebar';
 import Content from './Component/Content';
 import { MainContext } from './Context/MainContext';
+import { BrowserRouter } from 'react-router';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
@@ -33,38 +34,40 @@ const App = () => {
   }
 
   return (
-    <TestContext.Provider value={{ timeArr, setTimeArr }}>
-      <div
-        style={{ background: isLight ? "white" : "black", color: isLight ? "black" : "white" }}
-        className="flex flex-col justify-center items-center min-h-screen w-full font-bold text-3xl py-10 gap-6"
-      >
-        <Hello text={text} />
+    <BrowserRouter>
+      <TestContext.Provider value={{ timeArr, setTimeArr }}>
+        <div
+          style={{ background: isLight ? "white" : "black", color: isLight ? "black" : "white" }}
+          className="flex flex-col justify-center items-center min-h-screen w-full font-bold text-3xl py-10 gap-6"
+        >
+          <Hello text={text} />
 
-        <Timer
-          timeArr={timeArr}
-          setTimeArr={setTimeArr}
-          handleSetText={handleSetText}
-          handleSetIsLight={handleSetIsLight}
-          isLight={isLight}
-        />
+          <Timer
+            timeArr={timeArr}
+            setTimeArr={setTimeArr}
+            handleSetText={handleSetText}
+            handleSetIsLight={handleSetIsLight}
+            isLight={isLight}
+          />
 
-        <TimeList />
+          <TimeList />
 
-        <TaskContext.Provider value={{ taskItems, setTaskItems }}>
-          <TodoList text={text} />
-        </TaskContext.Provider>
+          <TaskContext.Provider value={{ taskItems, setTaskItems }}>
+            <TodoList text={text} />
+          </TaskContext.Provider>
 
-        <PureComponent />
+          <PureComponent />
 
-        <WordEvent />
+          <WordEvent />
 
-        <MainContext.Provider value={{showMenu, setShowMenu}}>
-          <Sidebar />
-          <Content />
-        </MainContext.Provider>
+          <MainContext.Provider value={{ showMenu, setShowMenu }}>
+            <Sidebar />
+            <Content />
+          </MainContext.Provider>
 
-      </div>
-    </TestContext.Provider>
+        </div>
+      </TestContext.Provider>
+    </BrowserRouter>
   );
 };
 
