@@ -19,7 +19,7 @@ const Sidebar = () => {
                     <img src="/assets/images/1.jpg" alt="pic" />
                 </li>
                 <li>
-                    <Link to="/">Users</Link>                    
+                    <Link to="/user">Users</Link>                    
                 </li>
                 <li>
                     <Link to="/post">Posts</Link>
