@@ -11,6 +11,7 @@ import Sidebar from './Component/Sidebar';
 import Content from './Component/Content';
 import { MainContext } from './Context/MainContext';
 import { BrowserRouter } from 'react-router';
+import AddUser from './Component/AddUser';
 
 const App = () => {
   const [text, setText] = useState("Hello My Friends");
