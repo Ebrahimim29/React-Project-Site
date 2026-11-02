@@ -7,6 +7,7 @@ import style from "../style.module.css";
 import { useContext, useState } from "react";
 import { MainContext } from "../Context/MainContext";
 import { Navigate, Route, Routes } from "react-router";
+import AddUser from "./AddUser";
 
 const Content = () => {
 
@@ -28,11 +29,12 @@ const Content = () => {
 
                 <Routes>
                     {/* <Route path="/user" element={isUser ? <Users/> : <Navigate replace to="/gallery"/>}></Route> */}
-                    <Route path="/user" element={<Users/>}></Route>
-                    <Route path="/post" element={<Posts/>}></Route>
-                    <Route path="/gallery" element={<Gallery/>}></Route>
-                    <Route path="/todo" element={<Todos/>}></Route>
-                    <Route path="*" element={<Users/>}></Route>
+                    <Route path="/user" element={<Users/>}/>
+                    <Route path="/user/add" element={<AddUser/>}/>
+                    <Route path="/post" element={<Posts/>}/>
+                    <Route path="/gallery" element={<Gallery/>}/>
+                    <Route path="/todo" element={<Todos/>}/>
+                    <Route path="*" element={<Users/>}/>
                 </Routes>
           
 
