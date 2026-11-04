@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { MainContext } from "../Context/MainContext";
 import { Navigate, Route, Routes } from "react-router";
 import AddUser from "./AddUser";
+import EditDesc from "./EditDesc";
 
 const Content = () => {
 
@@ -30,7 +31,9 @@ const Content = () => {
                 <Routes>
                     {/* <Route path="/user" element={isUser ? <Users/> : <Navigate replace to="/gallery"/>}></Route> */}
                     <Route path="/user" element={<Users/>}/>
-                    <Route path="/user/add" element={<AddUser/>}/>
+                    <Route path="/user/add" element={<AddUser/>}>
+                        <Route path=":userId" element={<EditDesc/>}/>
+                    </Route>
                     <Route path="/post" element={<Posts/>}/>
                     <Route path="/gallery" element={<Gallery/>}/>
                     <Route path="/todo" element={<Todos/>}/>

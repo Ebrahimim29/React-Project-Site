@@ -41,7 +41,9 @@ const Users = () => {
                             <td className="p-4">Ebrahimim29</td>
                             <td className="p-4">Ebrahimim29@gmail.com</td>
                             <td className="p-4 flex justify-center gap-4 text-xl">
-                                <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
+                                <Link to="/user/add/2">
+                                    <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
+                                </Link>
                                 <button className="text-red-400 hover:text-red-300"><FaTrash /></button>
                             </td>
                         </tr>

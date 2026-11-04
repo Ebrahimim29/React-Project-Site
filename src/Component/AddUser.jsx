@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Outlet, useNavigate, useParams } from "react-router";
 import { FaArrowRight, FaSave } from "react-icons/fa";
 import style from "../style.module.css";
 
 const AddUser = () => {
     const navigate = useNavigate();
 
-    // State برای نگهداری مقادیر فرم (برای اینکه فرم Controlled باشد)
+    const { userId } = useParams();
+
     const [formData, setFormData] = useState({
         name: "",
         username: "",
@@ -29,11 +30,13 @@ const AddUser = () => {
 
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
-            <h4 className="text-center text-2xl font-bold mb-8 text-blue-500">افزودن کاربر جدید</h4>
+            <h4 className="text-center text-2xl font-bold mb-8 text-blue-500">
+                {userId ? "ویرایش کاربر" : "افزودن کاربر"}
+            </h4>
 
             <div className="flex justify-center">
-                <form 
-                    onSubmit={handleSubmit} 
+                <form
+                    onSubmit={handleSubmit}
                     className="w-full max-w-3xl bg-gray-800 rounded-xl shadow-xl p-6 border border-gray-700"
                 >
                     {/* بخش اطلاعات اصلی */}
@@ -126,28 +129,28 @@ const AddUser = () => {
 
                     {/* دکمه‌ها */}
                     <div className="flex justify-between items-center pt-4 border-t border-gray-700">
-                        <Link 
+                        <Link
                             to="/user"
                             className="flex items-center gap-2 bg-gray-600 hover:bg-gray-500 text-white px-5 py-2.5 rounded-lg transition-colors"
                         >
                             <FaArrowRight />
                             بازگشت
                         </Link>
-                        
-                        <button 
-                            type="submit" 
+
+                        <button
+                            type="submit"
                             className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-lg shadow-green-900/50"
                         >
                             <FaSave />
-                            ذخیره کاربر
+                            {userId ? "ویرایش" : "افزودن"}
                         </button>
                     </div>
                 </form>
             </div>
+            <Outlet />
         </div>
     );
 };
 
 export default AddUser;
 
-// بخش 4: قسمت سوم 1:57 
