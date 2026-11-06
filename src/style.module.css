@@ -32,8 +32,10 @@ td , th {
 }
 
 .sidebar_avatar img{
-    max-width: 75px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+    margin: auto;    
 }
 
 .sidebar_list li {

@@ -20,3 +20,8 @@ body{
 .text_hover_shadow:hover{
     text-shadow: 0 0 3px black;
 }
+
+.active_nav li{
+    background-color: #ffffff6b !important;
+    color: black;
+}

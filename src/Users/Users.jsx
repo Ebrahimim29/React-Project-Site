@@ -1,8 +1,11 @@
-import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import { FaBackward, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import style from "../style.module.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Users = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
             <h4 className="text-center text-2xl font-bold mb-8">مدیریت کاربران</h4>
@@ -45,6 +48,9 @@ const Users = () => {
                                     <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
                                 </Link>
                                 <button className="text-red-400 hover:text-red-300"><FaTrash /></button>
+                                <button className="text-yellow-600 hover:text-green-600"
+                                onClick={()=>navigate("/post")}
+                                ><FaBackward/></button>
                             </td>
                         </tr>
                     </tbody>

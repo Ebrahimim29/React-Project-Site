@@ -129,13 +129,12 @@ const AddUser = () => {
 
                     {/* دکمه‌ها */}
                     <div className="flex justify-between items-center pt-4 border-t border-gray-700">
-                        <Link
-                            to="/user"
-                            className="flex items-center gap-2 bg-gray-600 hover:bg-gray-500 text-white px-5 py-2.5 rounded-lg transition-colors"
+                        <button className="flex items-center gap-2 bg-gray-600 hover:bg-gray-500 text-white px-5 py-2.5 rounded-lg transition-colors"
+                        onClick={()=>navigate(-1)}
                         >
                             <FaArrowRight />
                             بازگشت
-                        </Link>
+                        </button>
 
                         <button
                             type="submit"
