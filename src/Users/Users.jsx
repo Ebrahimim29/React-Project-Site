@@ -1,10 +1,32 @@
 import { FaBackward, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import style from "../style.module.css";
 import { Link, useNavigate } from "react-router";
+import swal from 'sweetalert';
 
 const Users = () => {
 
     const navigate = useNavigate();
+
+    const handleDelete = (itemId) => {
+        swal({
+            title: "Delete Record!",
+            text: `Are You Sure Delete ${itemId}`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your Imaginary File Has Been Deleted! ", {
+                    icon: "success",
+                });
+            }else{
+                swal("Your Imaginary File Is Safe!")
+            }
+        })
+    }
+
+// Part4 : sec 5 07:33
 
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
@@ -19,7 +41,7 @@ const Users = () => {
                         className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500 text-white"
                     />
                 </div>
-                <Link to="/user/add">
+                <Link to="/user/add" state={"vue"}>
                     <button className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
                         <FaPlus /> افزودن کاربر
                     </button>
@@ -47,9 +69,14 @@ const Users = () => {
                                 <Link to="/user/add/2">
                                     <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
                                 </Link>
-                                <button className="text-red-400 hover:text-red-300"><FaTrash /></button>
+
+                                <button className="text-red-400 hover:text-red-300" 
+                                onClick={()=>handleDelete(1)}><FaTrash /></button>
+
                                 <button className="text-yellow-600 hover:text-green-600"
-                                onClick={()=>navigate("/post")}
+                                onClick={()=>navigate("/post", {
+                                    state: {x:"react", y:"php"}
+                                })}
                                 ><FaBackward/></button>
                             </td>
                         </tr>

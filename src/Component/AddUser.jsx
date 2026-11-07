@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate, useParams } from "react-router";
+import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router";
 import { FaArrowRight, FaSave } from "react-icons/fa";
 import style from "../style.module.css";
 
 const AddUser = () => {
     const navigate = useNavigate();
+    const params = useLocation();
+    console.log(params);
+    
 
     const { userId } = useParams();
 
