@@ -2,10 +2,22 @@ import { FaBackward, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import style from "../style.module.css";
 import { Link, useNavigate } from "react-router";
 import swal from 'sweetalert';
+import { useEffect } from "react";
+import axios from "axios";
 
 const Users = () => {
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+            console.log(res);            
+        }).catch(err=>{
+            console.log(err);            
+        })
+    }, [])
+
+    // بخش 5 قسمت 2  ساعت 08:50
 
     const handleDelete = (itemId) => {
         swal({
@@ -26,7 +38,6 @@ const Users = () => {
         })
     }
 
-// Part4 : sec 5 07:33
 
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
