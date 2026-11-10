@@ -2,22 +2,21 @@ import { FaBackward, FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import style from "../style.module.css";
 import { Link, useNavigate } from "react-router";
 import swal from 'sweetalert';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Users = () => {
 
     const navigate = useNavigate();
+    const [users, setUsers] = useState([]);
 
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
-            console.log(res);            
+            setUsers(res.data)
         }).catch(err=>{
             console.log(err);            
         })
     }, [])
-
-    // بخش 5 قسمت 2  ساعت 08:50
 
     const handleDelete = (itemId) => {
         swal({
@@ -60,6 +59,8 @@ const Users = () => {
             </div>
 
             <div className="overflow-x-auto shadow-lg rounded-lg">
+
+            {users.length ? (
                 <table className="w-full text-left border-collapse bg-gray-800">
                     <thead>
                         <tr className="bg-gray-700 text-gray-300 border-b-2 border-amber-500">
@@ -71,11 +72,12 @@ const Users = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {users.map(u=>(                            
                         <tr className="border-b border-gray-700 hover:bg-gray-750 transition-colors">
-                            <td className="p-4 text-center">1</td>
-                            <td className="p-4">Mohammad</td>
-                            <td className="p-4">Ebrahimim29</td>
-                            <td className="p-4">Ebrahimim29@gmail.com</td>
+                            <td className="p-4 text-center">{u.id}</td>
+                            <td className="p-4">{u.name}</td>
+                            <td className="p-4">{u.username}</td>
+                            <td className="p-4">{u.email}</td>
                             <td className="p-4 flex justify-center gap-4 text-xl">
                                 <Link to="/user/add/2">
                                     <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
@@ -91,8 +93,12 @@ const Users = () => {
                                 ><FaBackward/></button>
                             </td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
+            ) : (
+                <h4 className="text-emerald-500 bg-red-400 text-center">Please Wait...</h4>
+            )}
             </div>
         </div>
     );
