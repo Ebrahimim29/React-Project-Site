@@ -37,7 +37,20 @@ const Users = () => {
         })
     }
 
+    const prom  = (id) => {
+        return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+    }
 
+    const func = async (id) => {
+        const res = await prom(id);
+        console.log(res.data);        
+        console.log(id);        
+    }
+
+    for (const item of [1,2,3,4,5,6]){
+        func(item)
+    }
+    
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
             <h4 className="text-center text-2xl font-bold mb-8">مدیریت کاربران</h4>
@@ -73,7 +86,8 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {users.map(u=>(                            
-                        <tr className="border-b border-gray-700 hover:bg-gray-750 transition-colors">
+                        <tr key={u.id}
+                         className="border-b border-gray-700 hover:bg-gray-750 transition-colors">
                             <td className="p-4 text-center">{u.id}</td>
                             <td className="p-4">{u.name}</td>
                             <td className="p-4">{u.username}</td>
