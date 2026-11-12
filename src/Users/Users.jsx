@@ -10,11 +10,11 @@ const Users = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
-    useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
             setUsers(res.data)
-        }).catch(err=>{
-            console.log(err);            
+        }).catch(err => {
+            console.log(err);
         })
     }, [])
 
@@ -26,31 +26,49 @@ const Users = () => {
             buttons: true,
             dangerMode: true
         })
-        .then((willDelete) => {
-            if (willDelete) {
-                swal("Poof! Your Imaginary File Has Been Deleted! ", {
-                    icon: "success",
-                });
-            }else{
-                swal("Your Imaginary File Is Safe!")
-            }
-        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios({
+                        method: "DELETE",
+                        url: `https://jsonplaceholder.typicode.com/users/${itemId}`
+                    }).then(res => {
+                        if(res.status == 200){
+                            const newUsers = users.filter(u=>u.id !== itemId);
+                            setUsers(newUsers);
+                            // console.log(res);
+                            swal("Poof! Your Imaginary File Has Been Deleted! ", {
+                                icon: "success",
+                                buttons: "Understanded"
+                            });
+                        }else{
+                            swal("No Successes", {
+                                icon: "error",
+                                buttons: "Understanded"
+                            })
+                        }
+                    })
+                } else {
+                    swal("Your Imaginary File Is Safe!")                    
+                }
+            })
     }
 
-    const prom  = (id) => {
-        return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
-    }
+    // ----------Async & Await:
 
-    const func = async (id) => {
-        const res = await prom(id);
-        console.log(res.data);        
-        console.log(id);        
-    }
+    // const prom  = (id) => {
+    //     return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+    // }
 
-    for (const item of [1,2,3,4,5,6]){
-        func(item)
-    }
-    
+    // const func = async (id) => {
+    //     const res = await prom(id);
+    //     console.log(res.data);        
+    //     console.log(id);        
+    // }
+
+    // for (const item of [1,2,3,4,5,6]){
+    //     func(item)
+    // }
+
     return (
         <div className={`${style.item_content} mt-5 p-6 bg-gray-900 min-h-screen text-white`}>
             <h4 className="text-center text-2xl font-bold mb-8">مدیریت کاربران</h4>
@@ -73,46 +91,46 @@ const Users = () => {
 
             <div className="overflow-x-auto shadow-lg rounded-lg">
 
-            {users.length ? (
-                <table className="w-full text-left border-collapse bg-gray-800">
-                    <thead>
-                        <tr className="bg-gray-700 text-gray-300 border-b-2 border-amber-500">
-                            <th className="p-4 text-center">#</th>
-                            <th className="p-4">Name</th>
-                            <th className="p-4">UserName</th>
-                            <th className="p-4">Email</th>
-                            <th className="p-4 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(u=>(                            
-                        <tr key={u.id}
-                         className="border-b border-gray-700 hover:bg-gray-750 transition-colors">
-                            <td className="p-4 text-center">{u.id}</td>
-                            <td className="p-4">{u.name}</td>
-                            <td className="p-4">{u.username}</td>
-                            <td className="p-4">{u.email}</td>
-                            <td className="p-4 flex justify-center gap-4 text-xl">
-                                <Link to="/user/add/2">
-                                    <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
-                                </Link>
+                {users.length ? (
+                    <table className="w-full text-left border-collapse bg-gray-800">
+                        <thead>
+                            <tr className="bg-gray-700 text-gray-300 border-b-2 border-amber-500">
+                                <th className="p-4 text-center">#</th>
+                                <th className="p-4">Name</th>
+                                <th className="p-4">UserName</th>
+                                <th className="p-4">Email</th>
+                                <th className="p-4 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.map(u => (
+                                <tr key={u.id}
+                                    className="border-b border-gray-700 hover:bg-gray-750 transition-colors">
+                                    <td className="p-4 text-center">{u.id}</td>
+                                    <td className="p-4">{u.name}</td>
+                                    <td className="p-4">{u.username}</td>
+                                    <td className="p-4">{u.email}</td>
+                                    <td className="p-4 flex justify-center gap-4 text-xl">
+                                        <Link to="/user/add/2">
+                                            <button className="text-blue-400 hover:text-blue-300"><FaEdit /></button>
+                                        </Link>
 
-                                <button className="text-red-400 hover:text-red-300" 
-                                onClick={()=>handleDelete(1)}><FaTrash /></button>
+                                        <button className="text-red-400 hover:text-red-300"
+                                            onClick={() => handleDelete(u.id)}><FaTrash /></button>
 
-                                <button className="text-yellow-600 hover:text-green-600"
-                                onClick={()=>navigate("/post", {
-                                    state: {x:"react", y:"php"}
-                                })}
-                                ><FaBackward/></button>
-                            </td>
-                        </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <h4 className="text-emerald-500 bg-red-400 text-center">Please Wait...</h4>
-            )}
+                                        <button className="text-yellow-600 hover:text-green-600"
+                                            onClick={() => navigate("/post", {
+                                                state: { x: "react", y: "php" }
+                                            })}
+                                        ><FaBackward /></button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <h4 className="text-emerald-500 bg-red-400 text-center">Please Wait...</h4>
+                )}
             </div>
         </div>
     );
