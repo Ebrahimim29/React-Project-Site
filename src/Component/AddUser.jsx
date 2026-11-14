@@ -6,25 +6,22 @@ import style from "../style.module.css";
 const AddUser = () => {
     const navigate = useNavigate();
     const params = useLocation();
-    console.log(params);
-    
+    // console.log(params);
 
-    const { userId } = useParams();
-
-    const [formData, setFormData] = useState({
+    const [data, setData] = useState({
         name: "",
         username: "",
         email: "",
-        city: "",
-        street: "",
-        houseCode: "",
-        postalCode: "",
-    });
+        address: {
+            street: "",
+            city: "",
+            suite: "",
+            zipcode: ""
+        }
+    })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
+
+    const { userId } = useParams();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,8 +46,8 @@ const AddUser = () => {
                             <input
                                 type="text"
                                 name="name"
-                                value={formData.name}
-                                onChange={handleChange}
+                                value={data.name}
+                                onChange={(e) => setData({ ...data, name: e.target.value })}
                                 placeholder="مثلاً: محمد ابراهیمی"
                                 className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white placeholder-gray-400"
                                 required
@@ -61,8 +58,8 @@ const AddUser = () => {
                             <input
                                 type="text"
                                 name="username"
-                                value={formData.username}
-                                onChange={handleChange}
+                                value={data.username}
+                                onChange={(e) => setData({ ...data, username: e.target.value })}
                                 placeholder="مثلاً: Ebrahimim29"
                                 className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white placeholder-gray-400"
                                 required
@@ -73,8 +70,8 @@ const AddUser = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
+                                value={data.email}
+                                onChange={(e) => setData({ ...data, email: e.target.value })}
                                 placeholder="example@email.com"
                                 className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white placeholder-gray-400 text-left"
                                 dir="ltr"
@@ -92,8 +89,8 @@ const AddUser = () => {
                                 <input
                                     type="text"
                                     name="city"
-                                    value={formData.city}
-                                    onChange={handleChange}
+                                    value={data.address.city}
+                                    onChange={(e) => setData({ ...data, address: { ...data.address, city: e.target.value } })}
                                     className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white"
                                 />
                             </div>
@@ -102,8 +99,8 @@ const AddUser = () => {
                                 <input
                                     type="text"
                                     name="street"
-                                    value={formData.street}
-                                    onChange={handleChange}
+                                    value={data.address.street}
+                                    onChange={(e) => setData({ ...data, address: { ...data.address, street: e.target.value } })}
                                     className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white"
                                 />
                             </div>
@@ -112,8 +109,8 @@ const AddUser = () => {
                                 <input
                                     type="text"
                                     name="houseCode"
-                                    value={formData.houseCode}
-                                    onChange={handleChange}
+                                    value={data.address.suite}
+                                    onChange={(e) => setData({ ...data, address: { ...data.address, suite: e.target.value } })}
                                     className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white"
                                 />
                             </div>
@@ -122,18 +119,20 @@ const AddUser = () => {
                                 <input
                                     type="text"
                                     name="postalCode"
-                                    value={formData.postalCode}
-                                    onChange={handleChange}
+                                    value={data.address.zipcode}
+                                    onChange={(e) => setData({ ...data, address: { ...data.address, zipcode: e.target.value } })}
                                     className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-white"
                                 />
                             </div>
                         </div>
                     </div>
 
+{/* 8:34 section 5 part 5 */}
+
                     {/* دکمه‌ها */}
                     <div className="flex justify-between items-center pt-4 border-t border-gray-700">
                         <button className="flex items-center gap-2 bg-gray-600 hover:bg-gray-500 text-white px-5 py-2.5 rounded-lg transition-colors"
-                        onClick={()=>navigate(-1)}
+                            onClick={() => navigate(-1)}
                         >
                             <FaArrowRight />
                             بازگشت
